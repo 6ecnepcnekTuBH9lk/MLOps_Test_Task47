@@ -1,0 +1,16 @@
+{
+  "date": "1/1/2015",
+  "quarter": "Quarter1",
+  "department": "sweing",
+  "day": "Thursday",
+  "team": 8,
+  "targeted_productivity": 0.8,
+  "smv": 26.16,
+  "wip": 1108.0,
+  "over_time": 7080,
+  "incentive": 98,
+  "idle_time": 0.0,
+  "idle_men": 0,
+  "no_of_style_change": 0,
+  "no_of_workers": 59.0
+}

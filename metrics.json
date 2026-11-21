@@ -1,0 +1,28 @@
+{
+  "source": "https://archive.ics.uci.edu/dataset/597/productivity+prediction+of+garment+employees",
+  "dataset_rows": 1197,
+  "sampled_rows": 1077,
+  "train_rows": 848,
+  "test_rows": 229,
+  "target": "actual_productivity",
+  "sampling": "stratified_random_90_percent_by_department",
+  "split": "chronological_80_20_by_unique_dates",
+  "cross_validation": "TimeSeriesSplit_5_by_unique_dates",
+  "model": "Random Forest",
+  "best_parameters": {
+    "model__max_depth": null,
+    "model__min_samples_leaf": 5,
+    "model__n_estimators": 100
+  },
+  "cv_rmse": 0.14758429991052255,
+  "test_metrics": {
+    "MAE": 0.09042730973181243,
+    "RMSE": 0.12661386514931916,
+    "R2": 0.39599115608804936
+  },
+  "baseline_metrics": {
+    "MAE": 0.12925848637991266,
+    "RMSE": 0.1860492843215836,
+    "R2": -0.30417770509791553
+  }
+}

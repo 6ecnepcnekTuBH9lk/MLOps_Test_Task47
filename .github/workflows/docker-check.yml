@@ -1,0 +1,31 @@
+name: Docker build and API smoke test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build --tag mlops-test-task47 .
+      - name: Test API
+        run: |
+          docker run --rm -d --name mlops-test-task47 -p 8000:8000 mlops-test-task47
+          for attempt in $(seq 1 30); do
+            if curl --silent --show-error --fail http://127.0.0.1:8000/health; then
+              break
+            fi
+            if [ "$attempt" -eq 30 ]; then
+              docker logs mlops-test-task47
+              exit 1
+            fi
+            sleep 2
+          done
+          curl --silent --show-error --fail -X POST http://127.0.0.1:8000/predict \
+            -H "Content-Type: application/json" \
+            --data-binary @example_request.json \
+            | python -c 'import json,sys; assert isinstance(json.load(sys.stdin)["prediction"], float)'
